@@ -1,0 +1,53 @@
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/application}"
+>
+  <head>
+    <title>Listing Players</title>
+  </head>
+  <body>
+    <div class="container" layout:fragment="content">
+      <h1>Listing Players</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>チーム名</th>
+            <th>守備位置</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="player:${players}" th:object="${player}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{age}"></td>
+            <td th:text="*{team}"></td>
+            <td th:text="*{position}"></td>
+            <td>
+              <a class="btn btn-outline-secondary btn-sm" th:href="@{/players/{id}(id=*{id})}"
+                >参照</a
+              >
+            </td>
+            <td>
+              <a class="btn btn-outline-secondary btn-sm" th:href="@{/players/{id}/edit(id=*{id})}"
+                >編集</a
+              >
+            </td>
+            <td>
+              <form th:action="@{/players/{id}(id=*{id})}" th:method="delete">
+                <input class="btn btn-outline-secondary btn-sm" type="submit" value="削除" />
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a class="btn btn-primary" href="/players/new">新規作成</a>
+    </div>
+  </body>
+</html>
