@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/players")
 class PlayerController(private val playerService: PlayerService) {
     @GetMapping
-    fun index(model: Model): String {
-        model.addAttribute("players", playerService.findAll())
+    fun index(): String {
         return "players/index"
     }
 
@@ -48,5 +47,14 @@ class PlayerController(private val playerService: PlayerService) {
     fun destroy(@PathVariable id: Long): String {
         playerService.delete(id)
         return "redirect:/players"
+    }
+}
+
+@RestController
+@RequestMapping("/api/players")
+class PlayerApiController(private val playerService: PlayerService) {
+    @GetMapping
+    fun index(model: Model): List<Player> {
+        return playerService.findAll()
     }
 }
