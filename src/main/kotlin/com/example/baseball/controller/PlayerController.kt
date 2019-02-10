@@ -57,4 +57,10 @@ class PlayerApiController(private val playerService: PlayerService) {
     fun index(model: Model): List<Player> {
         return playerService.findAll()
     }
+
+    @DeleteMapping("{id}")
+    fun destroy(@PathVariable id: Long): String {
+        playerService.delete(id)
+        return ""
+    }
 }
