@@ -43,7 +43,7 @@ function PlayerItem({
   );
 }
 
-const sort = (list, desc, col) =>
+const sort = (list, col, desc) =>
   list.sort((a, b) =>
     desc ? (a[col] > b[col] ? -1 : 1) : b[col] > a[col] ? -1 : 1,
   );
@@ -83,11 +83,11 @@ class PlayerList extends React.Component {
     }
   };
 
-  sortBy = ({ col }) => {
+  sortBy = col => {
     this.setState(prevState => {
       const desc = prevState.sort.col === col ? !prevState.sort.desc : false;
       return {
-        players: sort(prevState.players, desc, col),
+        players: sort(prevState.players, col, desc),
         sort: { col, desc },
       };
     });
@@ -100,11 +100,11 @@ class PlayerList extends React.Component {
       <table className="table">
         <thead>
           <tr>
-            <th onClick={() => this.sortBy({ col: 'id' })}>ID</th>
-            <th onClick={() => this.sortBy({ col: 'name' })}>名前</th>
-            <th onClick={() => this.sortBy({ col: 'age' })}>年齢</th>
-            <th onClick={() => this.sortBy({ col: 'team' })}>チーム名</th>
-            <th onClick={() => this.sortBy({ col: 'position' })}>守備位置</th>
+            <th onClick={() => this.sortBy('id')}>ID</th>
+            <th onClick={() => this.sortBy('name')}>名前</th>
+            <th onClick={() => this.sortBy('age')}>年齢</th>
+            <th onClick={() => this.sortBy('team')}>チーム名</th>
+            <th onClick={() => this.sortBy('position')}>守備位置</th>
             <th />
             <th />
             <th />
