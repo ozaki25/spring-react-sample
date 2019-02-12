@@ -1,3 +1,11 @@
+function fetchTeams(league) {
+  try {
+    return fetch(`/api/teams?league=${league}`).then(res => res.json());
+  } catch (e) {
+    alert(e.toString());
+  }
+}
+
 function PlayerForm() {
   const [name, setName] = React.useState('');
   const [age, setAge] = React.useState('');
@@ -7,24 +15,10 @@ function PlayerForm() {
   const [teams, setTeams] = React.useState([]);
 
   React.useEffect(() => {
-    if (league) fetchTeams(league);
+    if (league) updateTeams(league);
   }, [league]);
 
-  const fetchTeams = async league => {
-    try {
-      const teams = await fetch(`/api/teams?league=${league}`).then(res => res.json());
-      setTeams(teams);
-    } catch (e) {
-      alert(e.toString());
-    }
-  };
-
-  const invalid = () =>
-    name.trim() === '' ||
-    age.trim() === '' ||
-    league.trim() === '' ||
-    team.trim() === '' ||
-    position.trim() === '';
+  const updateTeams = async league => setTeams(await fetchTeams(league));
 
   const onChangeName = event => setName(event.target.value);
 
@@ -38,11 +32,7 @@ function PlayerForm() {
 
   const onSubmit = event => {
     event.preventDefault();
-    if (invalid()) {
-      alert('未入力の項目があります');
-    } else {
-      event.target.submit();
-    }
+    event.target.submit();
   };
 
   return (
