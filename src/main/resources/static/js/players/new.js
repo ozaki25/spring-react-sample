@@ -45,7 +45,7 @@ class PlayerForm extends React.Component {
   };
 
   render() {
-    const { name, age, league, team, position } = this.state;
+    const { name, age, league, team, position, teams } = this.state;
     return (
       <form action="/players" method="post" onSubmit={this.onSubmit}>
         <div className="form-group">
