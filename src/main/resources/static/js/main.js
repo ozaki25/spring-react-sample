@@ -1,4 +1,13 @@
-function PlayerItem({ id, name, age, team, position, onClickShow, onClickEdit, onClickDelete }) {
+function PlayerItem({
+  id,
+  name,
+  age,
+  team,
+  position,
+  onClickShow,
+  onClickEdit,
+  onClickDelete,
+}) {
   return (
     <tr>
       <td>{id}</td>
@@ -7,23 +16,37 @@ function PlayerItem({ id, name, age, team, position, onClickShow, onClickEdit, o
       <td>{team}</td>
       <td>{position}</td>
       <td>
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => onClickShow(id)}>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => onClickShow(id)}
+        >
           参照
         </button>
       </td>
       <td>
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => onClickEdit(id)}>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => onClickEdit(id)}
+        >
           編集
         </button>
       </td>
       <td>
-        <button className="btn btn-outline-secondary btn-sm" onClick={() => onClickDelete(id)}>
+        <button
+          className="btn btn-outline-secondary btn-sm"
+          onClick={() => onClickDelete(id)}
+        >
           削除
         </button>
       </td>
     </tr>
   );
 }
+
+const sort = (list, desc, col) =>
+  list.sort((a, b) =>
+    desc ? (a[col] > b[col] ? -1 : 1) : b[col] > a[col] ? -1 : 1,
+  );
 
 class PlayerList extends React.Component {
   state = {
@@ -62,17 +85,10 @@ class PlayerList extends React.Component {
 
   sortBy = ({ col }) => {
     this.setState(prevState => {
-      const { sort, players } = prevState;
-      const desc = sort.col === col ? !sort.desc : false;
-      const newPlayers = players.sort((a, b) =>
-        desc ? (a[col] > b[col] ? -1 : 1) : b[col] > a[col] ? -1 : 1,
-      );
+      const desc = prevState.sort.col === col ? !prevState.sort.desc : false;
       return {
-        players: newPlayers,
-        sort: {
-          col,
-          desc,
-        },
+        players: sort(prevState.players, desc, col),
+        sort: { col, desc },
       };
     });
   };
