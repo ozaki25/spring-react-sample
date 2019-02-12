@@ -19,6 +19,11 @@ class PlayerController(private val playerService: PlayerService) {
         return "players/new"
     }
 
+    @GetMapping("/vue/new")
+    fun newPlayerVue(): String {
+        return "players/vue/new"
+    }
+
     @GetMapping("{id}/edit")
     fun edit(@PathVariable id: Long, model: Model): String {
         model.addAttribute("player", playerService.findOne(id));
