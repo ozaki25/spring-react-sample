@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
   <head>
     <meta charset="utf-8" />
-    <title layout:title-pattern="$CONTENT_TITLE - $DECORATOR_TITLE">baseball</title>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <title layout:title-pattern="$CONTENT_TITLE - $DECORATOR_TITLE">
+      baseball
+    </title>
+    <link rel="stylesheet" href="/css/lib/bootstrap.css" />
   </head>
   <body>
     <div th:replace="~{common/navbar::navbar}"></div>
     <div layout:fragment="content"></div>
-    <script src="/js/jquery.js"></script>
-    <script src="/js/popper.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <script src="/js/lib/jquery.js"></script>
+    <script src="/js/lib/popper.js"></script>
+    <script src="/js/lib/bootstrap.js"></script>
   </body>
 </html>
