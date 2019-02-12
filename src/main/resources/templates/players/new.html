@@ -10,28 +10,11 @@
   <body>
     <div class="container" layout:fragment="content">
       <h1>New Player</h1>
-      <form th:action="@{/players}" th:method="post">
-        <div class="form-group">
-          <label class="control-label">名前</label>
-          <input class="form-control" type="text" name="name" />
-        </div>
-        <div class="form-group">
-          <label class="control-label">年齢</label>
-          <input class="form-control" type="number" name="age" />
-        </div>
-        <div class="form-group">
-          <label class="control-label">チーム名</label>
-          <input class="form-control" type="text" name="team" />
-        </div>
-        <div class="form-group">
-          <label class="control-label">守備位置</label>
-          <input class="form-control" type="text" name="position" />
-        </div>
-        <button class="btn btn-primary" type="submit">作成</button>
-      </form>
-      <div class="float-right">
-        <a class="btn btn-link" href="/players">一覧画面へ</a>
-      </div>
+      <div id="react-root">Loading...</div>
+      <script src="/js/react.js"></script>
+      <script src="/js/react-dom.js"></script>
+      <script src="/js/babel.js"></script>
+      <script src="/js/players/new.js" type="text/babel"></script>
     </div>
   </body>
 </html>
