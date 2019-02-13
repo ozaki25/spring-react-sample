@@ -7,6 +7,7 @@ function fetchTeams(league) {
     alert(e.toString());
   }
 }
+
 var app = new Vue({
   el: '#vue-root',
   data: function() {
