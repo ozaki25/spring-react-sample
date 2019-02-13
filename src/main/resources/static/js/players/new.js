@@ -7,11 +7,7 @@ function fetchTeams(league) {
 }
 
 function PlayerForm() {
-  const [name, setName] = React.useState('');
-  const [age, setAge] = React.useState('');
   const [league, setLeague] = React.useState('');
-  const [team, setTeam] = React.useState('');
-  const [position, setPosition] = React.useState('');
   const [teams, setTeams] = React.useState([]);
 
   React.useEffect(() => {
@@ -20,42 +16,17 @@ function PlayerForm() {
 
   const updateTeams = async league => setTeams(await fetchTeams(league));
 
-  const onChangeName = event => setName(event.target.value);
-
-  const onChangeAge = event => setAge(event.target.value);
-
-  const onChangeTeam = event => setTeam(event.target.value);
-
-  const onChangePosition = event => setPosition(event.target.value);
-
   const onChangeLeague = event => setLeague(event.target.value);
 
-  const onSubmit = event => {
-    event.preventDefault();
-    event.target.submit();
-  };
-
   return (
-    <form action="/players" method="post" onSubmit={onSubmit}>
+    <form action="/players" method="post">
       <div className="form-group">
         <label className="control-label">名前</label>
-        <input
-          className="form-control"
-          type="text"
-          name="name"
-          value={name}
-          onChange={onChangeName}
-        />
+        <input className="form-control" type="text" name="name" />
       </div>
       <div className="form-group">
         <label className="control-label">年齢</label>
-        <input
-          className="form-control"
-          type="number"
-          name="age"
-          value={age}
-          onChange={onChangeAge}
-        />
+        <input className="form-control" type="number" name="age" />
       </div>
       <div className="form-group">
         <label className="control-label">リーグ</label>
@@ -91,7 +62,7 @@ function PlayerForm() {
       {league && teams.length && (
         <div className="form-group">
           <label className="control-label">チーム</label>
-          <select className="form-control" name="team" value={team} onChange={onChangeTeam}>
+          <select className="form-control" name="team">
             {teams.map((team, key) => (
               <option key={key} value={team}>
                 {team}
@@ -102,13 +73,7 @@ function PlayerForm() {
       )}
       <div className="form-group">
         <label className="control-label">守備位置</label>
-        <input
-          className="form-control"
-          type="text"
-          name="position"
-          value={position}
-          onChange={onChangePosition}
-        />
+        <input className="form-control" type="text" name="position" />
       </div>
       <button className="btn btn-primary" type="submit">
         作成
