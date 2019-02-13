@@ -1,4 +1,4 @@
-# spring-react-sample
+# spring-react-vue-sample
 
 ## Dev
 
